@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Baltazar\\Documents\\DEV\\Bitirme Projesi\\FlatManagerLog\\FlatManagerLog.csproj": {}
+    "C:\\Users\\Baltazar\\Documents\\DEV\\Bitirme Projesi\\FML-APP\\FlatManagerLog\\FlatManagerLog.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Baltazar\\Documents\\DEV\\Bitirme Projesi\\FlatManagerLog\\FlatManagerLog.csproj": {
+    "C:\\Users\\Baltazar\\Documents\\DEV\\Bitirme Projesi\\FML-APP\\FlatManagerLog\\FlatManagerLog.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Baltazar\\Documents\\DEV\\Bitirme Projesi\\FlatManagerLog\\FlatManagerLog.csproj",
+        "projectUniqueName": "C:\\Users\\Baltazar\\Documents\\DEV\\Bitirme Projesi\\FML-APP\\FlatManagerLog\\FlatManagerLog.csproj",
         "projectName": "FlatManagerLog",
-        "projectPath": "C:\\Users\\Baltazar\\Documents\\DEV\\Bitirme Projesi\\FlatManagerLog\\FlatManagerLog.csproj",
+        "projectPath": "C:\\Users\\Baltazar\\Documents\\DEV\\Bitirme Projesi\\FML-APP\\FlatManagerLog\\FlatManagerLog.csproj",
         "packagesPath": "C:\\Users\\Baltazar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Baltazar\\Documents\\DEV\\Bitirme Projesi\\FlatManagerLog\\obj\\",
+        "outputPath": "C:\\Users\\Baltazar\\Documents\\DEV\\Bitirme Projesi\\FML-APP\\FlatManagerLog\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Baltazar\\AppData\\Roaming\\NuGet\\NuGet.Config",

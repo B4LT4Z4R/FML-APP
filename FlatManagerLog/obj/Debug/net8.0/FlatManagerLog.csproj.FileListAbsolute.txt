@@ -134,3 +134,15 @@ C:\Users\Baltazar\Documents\DEV\Bitirme Projesi\FlatManagerLog\obj\Debug\net8.0\
 C:\Users\Baltazar\Documents\DEV\Bitirme Projesi\FlatManagerLog\obj\Debug\net8.0\FlatManagerLog.pdb
 C:\Users\Baltazar\Documents\DEV\Bitirme Projesi\FlatManagerLog\obj\Debug\net8.0\FlatManagerLog.genruntimeconfig.cache
 C:\Users\Baltazar\Documents\DEV\Bitirme Projesi\FlatManagerLog\obj\Debug\net8.0\ref\FlatManagerLog.dll
+C:\Users\Baltazar\Documents\DEV\Bitirme Projesi\FML-APP\FlatManagerLog\obj\Debug\net8.0\FlatManagerLog.csproj.AssemblyReference.cache
+C:\Users\Baltazar\Documents\DEV\Bitirme Projesi\FML-APP\FlatManagerLog\obj\Debug\net8.0\FlatManagerLog.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Baltazar\Documents\DEV\Bitirme Projesi\FML-APP\FlatManagerLog\obj\Debug\net8.0\FlatManagerLog.AssemblyInfoInputs.cache
+C:\Users\Baltazar\Documents\DEV\Bitirme Projesi\FML-APP\FlatManagerLog\obj\Debug\net8.0\FlatManagerLog.AssemblyInfo.cs
+C:\Users\Baltazar\Documents\DEV\Bitirme Projesi\FML-APP\FlatManagerLog\obj\Debug\net8.0\FlatManagerLog.csproj.CoreCompileInputs.cache
+C:\Users\Baltazar\Documents\DEV\Bitirme Projesi\FML-APP\FlatManagerLog\obj\Debug\net8.0\FlatManagerLog.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Baltazar\Documents\DEV\Bitirme Projesi\FML-APP\FlatManagerLog\obj\Debug\net8.0\FlatManagerLog.RazorAssemblyInfo.cache
+C:\Users\Baltazar\Documents\DEV\Bitirme Projesi\FML-APP\FlatManagerLog\obj\Debug\net8.0\FlatManagerLog.RazorAssemblyInfo.cs
+C:\Users\Baltazar\Documents\DEV\Bitirme Projesi\FML-APP\FlatManagerLog\obj\Debug\net8.0\FlatManagerLog.sourcelink.json
+C:\Users\Baltazar\Documents\DEV\Bitirme Projesi\FML-APP\FlatManagerLog\obj\Debug\net8.0\FlatManagerLog.dll
+C:\Users\Baltazar\Documents\DEV\Bitirme Projesi\FML-APP\FlatManagerLog\obj\Debug\net8.0\refint\FlatManagerLog.dll
+C:\Users\Baltazar\Documents\DEV\Bitirme Projesi\FML-APP\FlatManagerLog\obj\Debug\net8.0\FlatManagerLog.pdb

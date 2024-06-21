@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "uSja5s8yja4=",
+  "dgSpecHash": "kkkl5B2O+nM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Baltazar\\Documents\\DEV\\Bitirme Projesi\\FlatManagerLog\\FlatManagerLog.csproj",
+  "projectFilePath": "C:\\Users\\Baltazar\\Documents\\DEV\\Bitirme Projesi\\FML-APP\\FlatManagerLog\\FlatManagerLog.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Baltazar\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Baltazar\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

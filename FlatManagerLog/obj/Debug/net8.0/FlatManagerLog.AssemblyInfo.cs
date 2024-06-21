@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FlatManagerLog")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a4a02165837ec658fc27d38f26da89e65172f72f")]
 [assembly: System.Reflection.AssemblyProductAttribute("FlatManagerLog")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FlatManagerLog")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

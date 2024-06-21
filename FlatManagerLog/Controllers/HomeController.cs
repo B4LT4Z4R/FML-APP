@@ -165,68 +165,14 @@ public class HomeController : Controller
 /// <summary>
 /// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////77
 /// </summary>
-/// <returns></returns>//BU TODOSLAR TENANATS OLARAK DEĞİŞTİRLECEK büyük küçük uyumuyla
+/// <returns></returns>//BU boşlukta yukarıdaki TODOSLAR TENANATS OLARAK DEĞİŞTİRLECEK büyük küçük uyumuyla
     
-    public IActionResult ToDos()
-    {
-        if (!HttpContext.Session.GetInt32("id").HasValue)
-        {
-            return RedirectToAction(nameof(Login));
-
-        }
-        List<ToDos> list = _context.ToDos.ToList();
-        return View(list);
-    }
-
-    public async Task<IActionResult> AddToDos(ToDos todos)
-    {
-        if (!HttpContext.Session.GetInt32("id").HasValue)
-        {
-            return RedirectToAction(nameof(Login));
-
-        }
-
-        if (todos.Id == 0)
-        {
-            await _context.AddAsync(todos);
-        }
-        else
-        {
-            _context.Update(todos);
-        }
-
-
-        await _context.SaveChangesAsync();
-
-        return RedirectToAction(nameof(todos));
-    }
-
-    public async Task<IActionResult> DeleteToDos(int? Id)
-    {
-        if (!HttpContext.Session.GetInt32("id").HasValue)
-        {
-            return RedirectToAction(nameof(Login));
-
-        }
-        ToDos todos = await _context.ToDos.FindAsync(Id);
-        _context.Remove(todos);
-        await _context.SaveChangesAsync();
-        return RedirectToAction(nameof(ToDos));
-    }
-
-    public async Task<IActionResult> ToDosDetails(int Id)
-    {
-        if (!HttpContext.Session.GetInt32("id").HasValue)
-        {
-            return RedirectToAction(nameof(Login));
-
-        }
-        var todos = await _context.ToDos.FindAsync(Id);
-        return Json(todos);
-    }
     
 
     
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public IActionResult Login()
     {
         return View();
