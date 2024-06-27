@@ -169,6 +169,63 @@ public class HomeController : Controller
     
     
 
+    public IActionResult Tenants()
+    {
+        if (!HttpContext.Session.GetInt32("id").HasValue)
+        {
+            return RedirectToAction(nameof(Login));
+
+        }
+        List<Tenants> list = _context.Tenants.ToList();
+        return View(list);
+    }
+
+    public async Task<IActionResult> AddTenants(Tenants tenants)
+    {
+        if (!HttpContext.Session.GetInt32("id").HasValue)
+        {
+            return RedirectToAction(nameof(Login));
+
+        }
+
+        if (tenants.Id == 0)
+        {
+            await _context.AddAsync(tenants);
+        }
+        else
+        {
+            _context.Update(tenants);
+        }
+
+
+        await _context.SaveChangesAsync();
+
+        return RedirectToAction(nameof(tenants));
+    }
+
+    public async Task<IActionResult> DeleteTenants(int? Id)
+    {
+        if (!HttpContext.Session.GetInt32("id").HasValue)
+        {
+            return RedirectToAction(nameof(Login));
+
+        }
+        Tenants tenants = await _context.Tenants.FindAsync(Id);
+        _context.Remove(tenants);
+        await _context.SaveChangesAsync();
+        return RedirectToAction(nameof(Tenants));
+    }
+
+    public async Task<IActionResult> TenantsDetails(int Id)
+    {
+        if (!HttpContext.Session.GetInt32("id").HasValue)
+        {
+            return RedirectToAction(nameof(Login));
+
+        }
+        var tenants = await _context.Tenants.FindAsync(Id);
+        return Json(tenants);
+    }
     
 
 
