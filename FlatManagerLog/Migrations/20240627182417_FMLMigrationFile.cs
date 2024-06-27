@@ -18,7 +18,9 @@ namespace FlatManagerLog.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Flats = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -43,14 +45,34 @@ namespace FlatManagerLog.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Rooms",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FlatNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RoomNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Apartment = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Tenant = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TenantMoveinDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TenantMoveoutDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PriceofRent = table.Column<double>(type: "float", nullable: false),
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rooms", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Tenants",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Residence = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TenantName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TenantPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TenantResidence = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Tc = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -71,7 +93,8 @@ namespace FlatManagerLog.Migrations
                     ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ManagerId = table.Column<int>(type: "int", nullable: false),
-                    BuildingsId = table.Column<int>(type: "int", nullable: false)
+                    BuildingsId = table.Column<int>(type: "int", nullable: false),
+                    Roomsid = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -88,6 +111,12 @@ namespace FlatManagerLog.Migrations
                         principalTable: "Manager",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ToDos_Rooms_Roomsid",
+                        column: x => x.Roomsid,
+                        principalTable: "Rooms",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -99,6 +128,11 @@ namespace FlatManagerLog.Migrations
                 name: "IX_ToDos_ManagerId",
                 table: "ToDos",
                 column: "ManagerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ToDos_Roomsid",
+                table: "ToDos",
+                column: "Roomsid");
         }
 
         /// <inheritdoc />
@@ -115,6 +149,9 @@ namespace FlatManagerLog.Migrations
 
             migrationBuilder.DropTable(
                 name: "Manager");
+
+            migrationBuilder.DropTable(
+                name: "Rooms");
         }
     }
 }

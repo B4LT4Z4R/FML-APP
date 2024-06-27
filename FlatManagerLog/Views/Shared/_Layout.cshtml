@@ -56,10 +56,12 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                              with font-awesome or any other icon font library -->
-                       
+
+             <hr width="100%" color="white" />
+
                         <li class="nav-item">
                             <a asp-area="" asp-controller="Home" asp-action="ToDos" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
+                                <i class='fas fa-tasks'></i>
 
                                
                                 <p>
@@ -67,12 +69,24 @@
                                 </p>
                             </a>
                         </li>
+ <hr width="100%" color="white" />
 
+
+                        <li class="nav-item">
+                             <a asp-area="" asp-controller="Home" asp-action="Rooms" class="nav-link">
+                                <i class='fas fa-project-diagram'></i>
+                                <p>
+                                    Rooms & Entities
+
+                                </p>
+                            </a>
+                        </li>
+ <hr width="100%" color="white" />
 
 
                         <li class="nav-item">
                              <a asp-area="" asp-controller="Home" asp-action="Tenants" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
+                                <i class='fas fa-hand-holding-usd'></i>
                                 <p>
                                     Tenants
 
@@ -80,21 +94,36 @@
                             </a>
                         </li>
 
+ <hr width="100%" color="white" />
 
                         <li class="nav-item">
                             <a  <a asp-area="" asp-controller="Home" asp-action="Buildings" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
+                                <i class='fas fa-city'></i>
                                 <p>
                                     Buildings
 
                                 </p>
                             </a>
                         </li>
+ <hr width="100%" color="white" />
 
-                        
+
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+
+  <hr width="100%" color="red" />
                         <li class="nav-item">
                             <a asp-area=""asp-controller="Home" asp-action="Logout" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
+                                <i class='fas fa-sign-out-alt' style='font-size:24px;color:red'></i>
                                 <p>
                                     Çıkış Yap
 
@@ -102,6 +131,7 @@
                             </a>
                         </li>
                       
+  <hr width="100%" color="red" />
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

@@ -1,9 +1,9 @@
-﻿@model IEnumerable<FlatManagerLog.Models.Buildings>
+@model IEnumerable<FlatManagerLog.Models.Rooms>
 <section class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Buildings</h1>
+        <h1>Rooms</h1>
       </div>
 
     </div>
@@ -11,9 +11,9 @@
 </section>
 <!-- Content Header (Page header) -->
 <div class="card-body">
-  <button type="button" class="btn btn-success" onclick="$('#BuildingsModal').modal('show'), $('#updateBtn').hide();"
+  <button type="button" class="btn btn-success" onclick="$('#RoomsModal').modal('show'), $('#updateBtn').hide();"
     data-toggle="modal" data-target="#modal-default">
-    Add New Buildings
+    Add New Rooms
   </button>
 </div>
 <div class="card-body">
@@ -22,11 +22,14 @@
   <table id="example2" class="table table-bordered table-hover">
     <thead>
       <tr>
-        <th>No</th>
-        <th>Building's Name</th>
-        <th>Building Address</th>
-               <th>Flats</th>
-                      <th>Notes</th>
+        <th>Apartment </th>
+                <th>Flat Number </th>
+        <th>Room Number </th>
+               <th>Tenant Name</th>
+       <th>Tenant Move-in </th>
+       <th>Tenant Move-out</th>
+       <th>Price of Rent </th>
+       <th>Notes </th>
       </tr>
     </thead>
     <tbody>
@@ -39,11 +42,11 @@
         sayac++;
         <tr>
           <td>@sayac</td>
-          <td>@item.Name</td>
+          <td>@item.FlatNumber</td>
 
           <td>
             <button class="btn btn-warning" onclick="updateForm(@item.Id)" type="button">Update</button>
-            <a asp-route-id="@item.Id" asp-action="DeleteBuildings" class="btn btn-danger"><i class="fa fa-eraser"></i>
+            <a asp-route-id="@item.Id" asp-action="DeleteRooms" class="btn btn-danger"><i class="fa fa-eraser"></i>
               Delete</a>
           </td>
 
@@ -56,20 +59,20 @@
 
 
 
-  <div class="modal" id="BuildingsModal" tabindex="-1" role="dialog">
+  <div class="modal" id="RoomsModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Buildings</h5>
+          <h5 class="modal-title">Rooms</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form method="POST" action="/Home/AddBuildings" autocomplete="off">
+        <form method="POST" action="/Home/AddRooms" autocomplete="off">
           <div class="modal-body">
             <div class="form-group">
               <input type="hidden" name="Id" id="Id" class="form-control">
-              <input type="text" name="Name" id="Name" class="form-control">
+              <input type="text" name="Number" id="Number" class="form-control">
             </div>
           </div>
           <div class="modal-footer">
@@ -89,19 +92,19 @@
 <script>
     $(() => clearForm())
     function updateForm(Id){
-      fetch('/Home/BuildingsDetails?Id='+Id)
+      fetch('/Home/RoomsDetails?Id='+Id)
       .then(res => res.json())
       .then(res =>{
           $('#Id').val(res.id)
-          $('#Name').val(res.name)
+          $('#Number').val(res.number)
       })
       $('#saveBtn').hide();
        $('#updateBtn').show();
-      $('#BuildingsModal').modal('show');
+      $('#RoomsModal').modal('show');
     }
     function clearForm(){
         $('#Id').val(null)
-          $('#Name').val(null)
+          $('#Number').val(null)
        $('#saveBtn').show();
        $('#updateBtn').hide();
     }

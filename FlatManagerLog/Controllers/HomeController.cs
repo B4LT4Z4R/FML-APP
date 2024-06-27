@@ -169,6 +169,71 @@ public class HomeController : Controller
     
     
 
+    public IActionResult Rooms()
+    {
+        if (!HttpContext.Session.GetInt32("id").HasValue)
+        {
+            return RedirectToAction(nameof(Login));
+
+        }
+        List<Rooms> list = _context.Rooms.ToList();
+        return View(list);
+    }
+
+    public async Task<IActionResult> AddRooms(Rooms rooms)
+    {
+        if (!HttpContext.Session.GetInt32("id").HasValue)
+        {
+            return RedirectToAction(nameof(Login));
+
+        }
+
+        if (rooms.Id == 0)
+        {
+            await _context.AddAsync(rooms);
+        }
+        else
+        {
+            _context.Update(rooms);
+        }
+
+
+        await _context.SaveChangesAsync();
+
+        return RedirectToAction(nameof(rooms));
+    }
+
+    public async Task<IActionResult> DeleteRooms(int? Id)
+    {
+        if (!HttpContext.Session.GetInt32("id").HasValue)
+        {
+            return RedirectToAction(nameof(Login));
+
+        }
+        Rooms rooms = await _context.Rooms.FindAsync(Id);
+        _context.Remove(rooms);
+        await _context.SaveChangesAsync();
+        return RedirectToAction(nameof(Rooms));
+    }
+
+    public async Task<IActionResult> RoomsDetails(int Id)
+    {
+        if (!HttpContext.Session.GetInt32("id").HasValue)
+        {
+            return RedirectToAction(nameof(Login));
+
+        }
+        var rooms= await _context.Rooms.FindAsync(Id);
+        return Json(rooms);
+    }
+    
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //TENANTS 
+
+
+
     public IActionResult Tenants()
     {
         if (!HttpContext.Session.GetInt32("id").HasValue)
@@ -227,7 +292,6 @@ public class HomeController : Controller
         return Json(tenants);
     }
     
-
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public IActionResult Login()

@@ -11,6 +11,8 @@ namespace FlatManagerLog.Models
         public DbSet<Manager> Manager { get; set; }
         public DbSet<Buildings> Buildings { get; set; }
         public DbSet<ToDos> ToDos { get; set; }
-         public DbSet<Tenants> Tenants { get; set; }
+         public DbSet<Rooms> Rooms { get; set; }
+
+                  public DbSet<Tenants> Tenants { get; set; }
     }
 }

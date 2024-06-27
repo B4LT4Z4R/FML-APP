@@ -18,5 +18,8 @@ namespace FlatManagerLog.Models{
         public Buildings Buildings { get; set; }
         public int BuildingsId { get; set; }
 
+                public Rooms Rooms { get; set; }
+                        public int Roomsid { get; set; }
+
     }
 }

@@ -22,9 +22,14 @@
   <table id="example2" class="table table-bordered table-hover">
     <thead>
       <tr>
-        <th>No</th>
-        <th>ToDo </th>
-        <th>Processes</th>
+        <th>Tenant's Apartment </th>
+                <th>Tenant's Flat Number </th>
+        <th>Room Number </th>
+               <th>Tenant's Name</th>
+       <th>Tenant's Move-in Date </th>
+       <th>Tenant's Move-out Date </th>
+       <th>Price of Rent </th>
+       <th>Notes </th>
       </tr>
     </thead>
     <tbody>
@@ -37,7 +42,7 @@
         sayac++;
         <tr>
           <td>@sayac</td>
-          <td>@item.Name</td>
+          <td>@item.TenantName</td>
 
           <td>
             <button class="btn btn-warning" onclick="updateForm(@item.Id)" type="button">Update</button>
