@@ -70,17 +70,20 @@ public async Task<IActionResult> AddTenants(Tenants tenants)
 
     if (tenants.Id == 0)
     {
-        tenants.RentPayed ??= "Not Payed"; // RentPayed null ise varsayılan değer ata
+        tenants.RentPayed = tenants.RentPayed ?? "Not Payed"; // Ensure RentPayed is not null
         await _context.AddAsync(tenants);
     }
     else
     {
+        tenants.RentPayed = tenants.RentPayed ?? "Not Payed"; // Ensure RentPayed is not null
         _context.Update(tenants);
     }
 
     await _context.SaveChangesAsync();
     return RedirectToAction(nameof(Tenants));
 }
+
+
 
         public async Task<IActionResult> DeleteTenants(int? Id)
         {

@@ -1,5 +1,4 @@
-
-
+using System.ComponentModel.DataAnnotations.Schema;
 namespace FlatManagerLog.Models
 {
     public class Tenants
@@ -9,8 +8,8 @@ namespace FlatManagerLog.Models
         public string TenantPhone { get; set; }
         public string TenantResidence { get; set; }
         public string Tc { get; set; }
-        public string RentPayed { get; set; }
-    
+        public string RentPayed { get; set; } = "Not Payed"; // Ensure default value is set
+
         [System.ComponentModel.DataAnnotations.Schema.NotMapped]
         public bool IsRentPaidForCurrentMonth { get; set; }
 
