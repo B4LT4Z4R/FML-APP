@@ -1,35 +1,33 @@
-@model IEnumerable<FlatManagerLog.Models.Tenants>
+
+@using FlatManagerLog.Models
+@model IEnumerable<Tenants>
+
 <section class="content-header">
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
         <h1>Tenants</h1>
       </div>
-
     </div>
-  </div><!-- /.container-fluid -->
+  </div>
 </section>
 <!-- Content Header (Page header) -->
 <div class="card-body">
-  <button type="button" class="btn btn-success" onclick="$('#TenantsModal').modal('show'), $('#updateBtn').hide();"
-    data-toggle="modal" data-target="#modal-default">
+  <button type="button" class="btn btn-success" onclick="clearForm(); $('#TenantsModal').modal('show')">
     Add New Tenants
   </button>
 </div>
 <div class="card-body">
-
-
   <table id="example2" class="table table-bordered table-hover">
     <thead>
       <tr>
-        <th>Tenant's Apartment </th>
-                <th>Tenant's Flat Number </th>
-        <th>Room Number </th>
-               <th>Tenant's Name</th>
-       <th>Tenant's Move-in Date </th>
-       <th>Tenant's Move-out Date </th>
-       <th>Price of Rent </th>
-       <th>Notes </th>
+        <th>Row</th>
+        <th>Tenant's Name</th>
+        <th>Phone Number</th>
+        <th>Tenant's Residence</th>
+        <th>Tenant's ID Number</th>
+        <th>Payment of Rent</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -43,13 +41,16 @@
         <tr>
           <td>@sayac</td>
           <td>@item.TenantName</td>
-
+          <td>@item.TenantPhone</td>
+          <td>@item.TenantResidence</td>
+          <td>@item.Tc</td>
+          <td>@(item.IsRentPaidForCurrentMonth ? "Payed" : "Not Payed")</td>
           <td>
+            <button class="btn btn-success" onclick="addPaymentForm(@item.Id)" type="button">Add Payments</button>
+            <button class="btn btn-info" onclick="viewPayments(@item.Id)" type="button">View Payments</button>
             <button class="btn btn-warning" onclick="updateForm(@item.Id)" type="button">Update</button>
-            <a asp-route-id="@item.Id" asp-action="DeleteTenants" class="btn btn-danger"><i class="fa fa-eraser"></i>
-              Delete</a>
+            <a asp-route-id="@item.Id" asp-action="DeleteTenants" class="btn btn-danger"><i class="fa fa-eraser"></i> Delete</a>
           </td>
-
         </tr>
       }
     </tbody>
@@ -57,8 +58,7 @@
     </tfoot>
   </table>
 
-
-
+  <!-- Tenants Modal -->
   <div class="modal" id="TenantsModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -72,40 +72,159 @@
           <div class="modal-body">
             <div class="form-group">
               <input type="hidden" name="Id" id="Id" class="form-control">
-              <input type="text" name="Name" id="Name" class="form-control">
+              <input type="text" name="TenantName" id="TenantName" class="form-control" placeholder="Tenant Name">
+            </div>
+            <div class="form-group">
+              <input type="text" name="TenantPhone" id="TenantPhone" class="form-control" placeholder="Tenant Phone">
+            </div>
+            <div class="form-group">
+              <input type="text" name="TenantResidence" id="TenantResidence" class="form-control" placeholder="Tenant Residence">
+            </div>
+            <div class="form-group">
+              <input type="text" name="Tc" id="Tc" class="form-control" placeholder="Tenant's ID number">
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" onclick="clearForm()" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button type="submit" id="saveBtn" class="btn btn-primary">Add</button>
             <button type="submit" id="updateBtn" class="btn btn-primary">Update</button>
-
           </div>
         </form>
       </div>
     </div>
   </div>
 
-</div>
+  <!-- Payments Record Modal -->
+  <div class="modal" id="PaymentsModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Payment Records</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table id="paymentsTable" class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Currency</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="paymentsBody">
+              <!-- Payment records will be dynamically inserted here -->
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <!-- Payments Adding Modal -->
+  <div class="modal" id="AddPaymentModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Payment</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form method="POST" action="/Home/AddPayment" autocomplete="off">
+          <div class="modal-body">
+            <div class="form-group">
+              <input type="hidden" name="TenantId" id="PaymentTenantId" class="form-control">
+              <input type="number" name="Amount" id="Amount" class="form-control" placeholder="Amount">
+            </div>
+            <div class="form-group">
+              <select name="Currency" id="Currency" class="form-control">
+                <option value="TL">TL</option>
+                <option value="EUR">EUR</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Add Payment</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
 <script>
-    $(() => clearForm())
-    function updateForm(Id){
-      fetch('/Home/TenantsDetails?Id='+Id)
+  $(document).ready(function() {
+    clearForm();
+  });
+
+  function updateForm(Id) {
+    fetch('/Home/TenantsDetails?Id=' + Id)
       .then(res => res.json())
-      .then(res =>{
-          $('#Id').val(res.id)
-          $('#Name').val(res.name)
-      })
-      $('#saveBtn').hide();
-       $('#updateBtn').show();
-      $('#TenantsModal').modal('show');
-    }
-    function clearForm(){
-        $('#Id').val(null)
-          $('#Name').val(null)
-       $('#saveBtn').show();
-       $('#updateBtn').hide();
-    }
-  </script> 
+      .then(res => {
+        $('#Id').val(res.id);
+        $('#TenantName').val(res.tenantName);
+        $('#TenantPhone').val(res.tenantPhone);
+        $('#TenantResidence').val(res.tenantResidence);
+        $('#Tc').val(res.tc);
+      });
+    $('#saveBtn').hide();
+    $('#updateBtn').show();
+    $('#TenantsModal').modal('show');
+  }
+
+  function clearForm() {
+    $('#Id').val(null);
+    $('#TenantName').val(null);
+    $('#TenantPhone').val(null);
+    $('#TenantResidence').val(null);
+    $('#Tc').val(null);
+    $('#saveBtn').show();
+    $('#updateBtn').hide();
+  }
+
+  function viewPayments(tenantId) {
+    fetch('/Home/GetPayments?tenantId=' + tenantId)
+      .then(res => res.json())
+      .then(payments => {
+        const paymentsBody = $('#paymentsBody');
+        paymentsBody.empty();
+        payments.forEach(payment => {
+          const paymentDate = new Date(payment.date);
+          const formattedDate = paymentDate.toLocaleDateString();
+          const formattedTime = paymentDate.getHours().toString().padStart(2, '0') + ':' + paymentDate.getMinutes().toString().padStart(2, '0');
+          paymentsBody.append(`
+            <tr>
+              <td>${formattedDate} ${formattedTime}</td>
+              <td>${payment.amount}</td>
+              <td>${payment.currency}</td>
+              <td>
+                <button class="btn btn-danger" onclick="deletePayment(${payment.id})">Delete</button>
+              </td>
+            </tr>
+          `);
+        });
+        $('#PaymentTenantId').val(tenantId);
+        $('#PaymentsModal').modal('show');
+      });
+  }
+
+  function deletePayment(paymentId) {
+    fetch('/Home/DeletePayment?paymentId=' + paymentId, { method: 'POST' })
+      .then(() => {
+        $('#PaymentsModal').modal('hide');
+      });
+  }
+
+  function addPaymentForm(tenantId) {
+    $('#PaymentTenantId').val(tenantId);
+    $('#Amount').val(null);
+    $('#Currency').val('EUR');
+    $('#AddPaymentModal').modal('show');
+  }
+</script>

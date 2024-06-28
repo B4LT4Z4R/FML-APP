@@ -13,6 +13,20 @@ namespace FlatManagerLog.Models
         public DbSet<ToDos> ToDos { get; set; }
          public DbSet<Rooms> Rooms { get; set; }
 
-                  public DbSet<Tenants> Tenants { get; set; }
+
+         
+        public DbSet<Tenants> Tenants { get; set; }
+        public DbSet<Payments> Payments { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Tenants>()
+                .HasMany(t => t.Payments)
+                .WithOne(p => p.Tenant)
+                .HasForeignKey(p => p.TenantId);
+
+            base.OnModelCreating(modelBuilder);
+        }
+
     }
 }

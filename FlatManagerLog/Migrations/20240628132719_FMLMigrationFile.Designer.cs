@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FlatManagerLog.Migrations
 {
     [DbContext(typeof(FMLContext))]
-    [Migration("20240627182417_FMLMigrationFile")]
+    [Migration("20240628132719_FMLMigrationFile")]
     partial class FMLMigrationFile
     {
         /// <inheritdoc />
@@ -87,6 +87,34 @@ namespace FlatManagerLog.Migrations
                     b.ToTable("Manager");
                 });
 
+            modelBuilder.Entity("FlatManagerLog.Models.Payments", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Currency")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("TenantId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TenantId");
+
+                    b.ToTable("Payments");
+                });
+
             modelBuilder.Entity("FlatManagerLog.Models.Rooms", b =>
                 {
                     b.Property<int>("Id")
@@ -107,22 +135,16 @@ namespace FlatManagerLog.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Occupant")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<double>("PriceofRent")
                         .HasColumnType("float");
 
                     b.Property<string>("RoomNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Tenant")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("TenantMoveinDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("TenantMoveoutDate")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -136,6 +158,10 @@ namespace FlatManagerLog.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("RentPayed")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Tc")
                         .IsRequired()
@@ -209,6 +235,17 @@ namespace FlatManagerLog.Migrations
                     b.ToTable("ToDos");
                 });
 
+            modelBuilder.Entity("FlatManagerLog.Models.Payments", b =>
+                {
+                    b.HasOne("FlatManagerLog.Models.Tenants", "Tenant")
+                        .WithMany("Payments")
+                        .HasForeignKey("TenantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Tenant");
+                });
+
             modelBuilder.Entity("FlatManagerLog.Models.ToDos", b =>
                 {
                     b.HasOne("FlatManagerLog.Models.Buildings", "Buildings")
@@ -234,6 +271,11 @@ namespace FlatManagerLog.Migrations
                     b.Navigation("Manager");
 
                     b.Navigation("Rooms");
+                });
+
+            modelBuilder.Entity("FlatManagerLog.Models.Tenants", b =>
+                {
+                    b.Navigation("Payments");
                 });
 #pragma warning restore 612, 618
         }

@@ -9,10 +9,10 @@ public class Rooms{
           public string RoomNumber { get; set; }
      public string Apartment { get; set; }
 
-      public string Tenant { get; set; }
-         public DateTime TenantMoveinDate { get; set; }
-         public DateTime TenantMoveoutDate { get; set; }
+      public string Occupant { get; set; }
+
               public double PriceofRent { get; set; }
+
                     public string Notes { get; set; }
     }
 
