@@ -14,6 +14,7 @@ public class Rooms{
               public double PriceofRent { get; set; }
 
                     public string Notes { get; set; }
+                        public Buildings Building { get; set; }
     }
 
 }

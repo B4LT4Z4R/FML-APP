@@ -18,10 +18,6 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Baltazar\Documents\DEV\Bitirme Projesi\FML-APP\FlatManagerLog
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Baltazar/Documents/DEV/Bitirme Projesi/FML-APP/FlatManagerLog/Views/Home/Buildings.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxCdWlsZGluZ3MuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Baltazar/Documents/DEV/Bitirme Projesi/FML-APP/FlatManagerLog/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

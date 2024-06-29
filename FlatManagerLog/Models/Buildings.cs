@@ -9,6 +9,9 @@ namespace FlatManagerLog.Models
            public string Address { get; set; }
                       public string Flats { get; set; }
                public string Notes { get; set; }
+
+                   public ICollection<Rooms> Rooms { get; set; }
+                   
     }
 
 

@@ -168,5 +168,86 @@ public async Task<IActionResult> AddPayment(Payments payment)
             HttpContext.Session.Remove("id");
             return RedirectToAction(nameof(Login));
         }
+
+    //TODOS CRUD:
+
+    // ToDos
+public async Task<IActionResult> ToDos()
+{
+    if (!HttpContext.Session.GetInt32("id").HasValue)
+    {
+        return RedirectToAction(nameof(Login));
+    }
+    var list = await _context.ToDos.ToListAsync();
+    return View(list);
+}
+
+public async Task<IActionResult> AddToDo(ToDos toDo)
+{
+    if (!HttpContext.Session.GetInt32("id").HasValue)
+    {
+        return RedirectToAction(nameof(Login));
+    }
+
+    if (toDo.Id == 0)
+    {
+        await _context.AddAsync(toDo);
+    }
+    else
+    {
+        _context.Update(toDo);
+    }
+
+    await _context.SaveChangesAsync();
+    return RedirectToAction(nameof(ToDos));
+}
+
+public async Task<IActionResult> DeleteToDo(int? Id)
+{
+    if (!HttpContext.Session.GetInt32("id").HasValue)
+    {
+        return RedirectToAction(nameof(Login));
+    }
+
+    var toDo = await _context.ToDos.FindAsync(Id);
+    if (toDo == null)
+    {
+        return NotFound();
+    }
+
+    _context.Remove(toDo);
+    await _context.SaveChangesAsync();
+    return RedirectToAction(nameof(ToDos));
+}
+
+public async Task<IActionResult> ToDoDetails(int Id)
+{
+    if (!HttpContext.Session.GetInt32("id").HasValue)
+    {
+        return RedirectToAction(nameof(Login));
+    }
+
+    var toDo = await _context.ToDos.FindAsync(Id);
+    if (toDo == null)
+    {
+        return NotFound();
+    }
+
+    return Json(toDo);
+}
+
+
+//ROOMS CRUD:
+
+// Rooms
+
+
+
+
+//BUİLDINGS CRUD:
+
+
+
+
     }
 }
